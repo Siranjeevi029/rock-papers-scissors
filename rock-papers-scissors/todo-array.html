@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        table{
+            position:relative;  
+            left: 5%;
+        }
+        h2{
+            position:relative;  
+            left: 18%;
+        }
+        td{
+            padding: 5%;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>todo list</h2>
+    <table id="table" >
+        <tr><td ><input type="text" placeholder="todo name" class="one"></td>
+        <td><input type="date" placeholder="yyyy-mm-dd" class="one"></td>
+        <td><button onclick="add()">Add</button></td></tr>
+    </table>
+<script>
+    let table=document.getElementById("table");
+   
+    function add(){
+        let row=document.createElement("tr");
+        let values=document.getElementsByClassName("one");
+        for(let i=0;i<3;i++){
+            let col=document.createElement("td");
+            if(i===2){
+                let but=document.createElement("button");
+                but.innerHTML="Delete";
+                 
+                but.addEventListener("click",del);
+                col.appendChild(but);
+            }
+            else{
+                col.innerHTML=values[i].value;
+            }
+            row.appendChild(col);
+        }
+        table.appendChild(row);
+    }
+    function del(event){
+        event.target.parentElement.parentElement.remove();
+        
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<head>
+
+</head>
+<body>
+  <button id="one" onclick="rock()">rock</button>
+  <button id="two"onclick="papers()">papers</button>
+  <button id="three"onclick="scissors()">scissors</button>
+  <button id="res"onclick="reset()">reset</button>
+  <p id="o"></p>
+  <script>
+    
+    let obj=JSON.parse(localStorage.getItem("score"));
+    
+    var x=document.getElementById("o");
+    function rock(){
+      let i=getRandomInt(1,3);
+      
+      let arr;
+      if(i==1){
+        arr="rock";
+      }
+      else if(i==2){
+        arr="papers";
+      }
+      else arr="scissors";
+     
+      if(arr==="rock"){
+        
+        obj.tie++;
+        alert("you chose rock. The computer chose "+arr+" ,so neither of them won\n"+JSON.stringify(obj));
+      
+        
+      }
+      else if(arr==="papers"){
+        
+        obj.cp++;
+        alert("you chose rock. and the computer chose "+arr+" So you lost\n"+JSON.stringify(obj));
+        
+      }
+      else {
+        obj.up++;
+        alert("you chose rock. and the computer chose "+arr+" So you won\n"+JSON.stringify(obj));
+     
+        
+      }
+      set();
+      localStorage.setItem('score',JSON.stringify(obj));
+      
+      
+    }
+    function set(){
+      x.innerHTML="computer points: "+obj.cp+" user points: "+obj.up;
+    }
+    function papers(){
+      
+      let i=getRandomInt(1,3);
+      console.log(i);
+      let arr;
+      if(i==1){
+        arr="rock";
+      }
+      else if(i==2){
+        arr="papers";
+      }
+      else arr="scissors";
+      console.log("you chose papers and the computer chose "+arr);
+      if(arr==="rock"){
+        alert("you won");
+        up++;
+      }
+      else if(arr==="papers"){
+        alert("neither of them won");
+        
+      }
+      else {
+        alert("you lost");
+        cp++;
+      }
+      x.innerHTML="computer points: "+cp+" user points: "+up;
+    }
+    function scissors(){
+      
+      let i=getRandomInt(1,3);
+      console.log(i);
+      let arr;
+      if(i===1){
+        arr="rock";
+      }
+      else if(i===2){
+        arr="papers";
+      }
+      else arr="scissors";
+      console.log("you chose scissors and the computer chose "+arr);
+      if(arr==="rock"){
+        cp++;
+        alert("you lost");
+      }
+      else if(arr==="papers"){
+        alert("you won");
+        up++;
+      }
+      else {
+        alert("neither of them won");
+      }
+      x.innerHTML="computer points: "+cp+" user points: "+up;
+    }
+      function reset(){
+        const hello={up:0,cp:0,tie:0};
+        localStorage.setItem("score",JSON.stringify(hello));
+        obj=hello;
+        set();
+      }
+    
+    function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+window.addEventListener("load",set,true);
+
+  </script>
+</body>
